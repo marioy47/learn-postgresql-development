@@ -1,0 +1,38 @@
+
+version: '3'
+
+services:
+
+  # PostgreSQL + some tools (git, wget, bzpi2)
+  postgres:
+    build:
+      context: ./
+      args:
+        - POSTGRES_VERSION=13
+        - OMDB_DIR=/omdb
+    container_name: pgsql-db
+    environment:
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-password}
+      - PGDATA=${PGDATA:-/var/lib/posgresql/data/pgdata}
+    volumes:
+      - pgsql-data:${PGDATA:-/var/lib/posgresql/data/pgdata}
+      - omdb-data:${OMDB_DIR:-/omdb}
+    working_dir: /omdb
+
+  # PgAdmin on port 5050
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgsql-pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@example.com
+      - PGADMIN_DEFAULT_PASSWORD=password
+    ports:
+      - ${PGADMIN_PORT:-5050}:80
+
+volumes:
+  pgsql-data:
+  omdb-data:
+
+networks:
+  default:
+    name: pgsql-network
