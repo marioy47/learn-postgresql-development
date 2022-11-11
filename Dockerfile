@@ -2,10 +2,12 @@
 ARG POSTGRES_VERSION
 FROM postgres:${POSTGRES_VERSION}
 
+# Install additional OS tools
 RUN apt-get update -y \
     && apt-get install -y --no-install-recommends git wget bzip2 sudo vim \
     && rm -rf /var/lib/apt/lists/*
 
+# Include the omdb-postgresql project in the image
 ARG OMDB_DIR
 RUN mkdir -p $OMDB_DIR \
     && chown -R postgres:postgres ${OMDB_DIR} \

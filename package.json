@@ -1,8 +1,7 @@
 {
-  "name": "fe-masters-postgresql",
+  "name": "learn-postgresql-docker",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "psql": "docker-compose exec --user=postgres postgres psql",
     "bash": "docker-compose exec --user=postgres postgres bash",
