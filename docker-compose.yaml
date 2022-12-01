@@ -3,17 +3,19 @@ version: '3'
 
 services:
 
-  # PostgreSQL + some tools (git, wget, bzpi2)
+  # Postgres DB + some tools (git, wget, bzpi2)
   postgres:
     build:
       context: ./
       args:
-        - POSTGRES_VERSION=${POSTGRES_VERSION:-13}
+        - POSTGRES_VERSION=${POSTGRES_VERSION:-14} # Not compatible  with alpine
         - OMDB_DIR=${OMDB_DIR:-/omdb}
     container_name: pgsql-db
     environment:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-password}
       - PGDATA=${PGDATA:-/var/lib/posgresql/data/pgdata}
+    ports:
+      - 5432:5432
     volumes:
       - pgsql-data:${PGDATA:-/var/lib/posgresql/data/pgdata}
       - omdb-data:${OMDB_DIR:-/omdb}

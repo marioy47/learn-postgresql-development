@@ -3,12 +3,16 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
+    "start": "docker-compose up -d",
+    "stop": "docker-compose down",
+    "destroy": "docker-compose down -v",
     "psql": "docker-compose exec --user=postgres postgres psql",
     "bash": "docker-compose exec --user=postgres postgres bash",
-    "omdb:pull": "docker-compose exec --user=postgres postgres git pull",
+    "omdb:pull": "docker-compose exec --user=postgres postgres git -c http.sslVerify=false pull",
     "omdb:download": "docker-compose exec --user=postgres postgres ./download",
     "omdb:import": "docker-compose exec --user=postgres postgres ./import",
-    "omdb": "npm-run-all omdb:*"
+    "omdb": "npm-run-all omdb:*",
+    "logs": "docker-compose logs -f"
   },
   "keywords": [],
   "author": "",

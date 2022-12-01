@@ -22,14 +22,14 @@ The `npm run omdb` command can be executed in parts in case you want to debug is
 
 ## PgAdmin4
 
-You can connect to PgAdmin4 on <https://localhost:5050> to manage the PostgreSQL databases with the following creadentials:
+You can connect to PgAdmin4 on <http://localhost:5050/> to manage the PostgreSQL databases with the following creadentials:
 
 User: `admin@example.co`
 Password: `password`
 
 And register a new _Server_ by right clicking on the left sidebar and usgin the following connection paramters:
 
-- Name: `Docker Container` (this can be whaterver you want actually)
+- Name: `Pg Docker Container` (this can be whaterver you want actually)
 - Host: `postgres`
 - Port: `5432` (the default port)
 - User: `postgres`
