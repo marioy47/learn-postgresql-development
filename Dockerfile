@@ -12,3 +12,6 @@ ARG OMDB_DIR
 RUN mkdir -p $OMDB_DIR \
     && chown -R postgres:postgres ${OMDB_DIR} \
     && sudo -H -u postgres GIT_SSL_NO_VERIFY=1 git clone https://github.com/credativ/omdb-postgresql.git ${OMDB_DIR}
+
+# Fix cert issues with WGET
+RUN sudo -H -u postgres bash -c "echo 'check_certificate = off' > ~/.wgetrc"
