@@ -8,7 +8,7 @@ services:
     build:
       context: ./
       args:
-        - POSTGRES_VERSION=${POSTGRES_VERSION:-14} # Not compatible  with alpine
+        - POSTGRES_VERSION=${POSTGRES_VERSION:-15} # It has to be a debian (debian, ubuntu) based version
         - OMDB_DIR=${OMDB_DIR:-/omdb}
     container_name: pgsql-db
     environment:
