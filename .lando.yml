@@ -1,0 +1,24 @@
+# https://github.com/lando/lando/issues/1991#issuecomment-967760888
+name: pgadmin-test
+
+services:
+  postgres:
+    type: postgres
+    creds:
+      database: learning
+      user: postgres
+      password: 
+  
+  pgadmin:
+    type: compose
+    # app_mount: false
+    services:
+      image: dpage/pgadmin4
+      command: /entrypoint.sh
+      environment:
+        PGADMIN_DEFAULT_EMAIL: admin@example.com
+        PGADMIN_DEFAULT_PASSWORD: password
+      ports:
+        - "127.0.0.1::80"
+
+
