@@ -7,14 +7,13 @@ services:
     creds:
       database: learning
       user: postgres
-      password: 
+      password: password
   
   pgadmin:
     type: lando
     api: 3
-    scanner: false
+    scanner: false # PgAdmin returns a 401 with a redirection that Lando doesn't like
     ssl: true
-    # app_mount: false
     services:
       image: dpage/pgadmin4
       command: /entrypoint.sh
